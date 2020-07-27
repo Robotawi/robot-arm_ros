@@ -1,29 +1,58 @@
-# Prepare the workspace
-```sh
-catkin_make 
-source ./sevel/setup.bash
-```
+# ROS - Robot Arm
+This is a ROS melodic workspace created on Ubuntu 18.04. The workspace is for the simulation of a simple robot arm built from scratch, includes sensors and control plugins, and incorporate the robot in a world file.
 
-# Use the robot
+## Installation
+
+- #### Prerequisite
+    - You should have ROS melodic on your ubuntu 18.04.
+    - All ROS dependency is satisfied.
+    - Gazebo simulator is installed.
+
+- #### Clone
+
+    ```
+    git clone https://github.com/Robotawi/robot-arm_ros.git
+    ```
+
+- #### Setup
+    ```
+    cd robot-arm_ros
+    catkin_make
+    source ./devel/setup.bash
+    ```
+## Package description
+There are two nodes in this package. The first is for visual processing and the second is for safely moving the robot. If the robot's arm camera detects a uniform image, it is looking at the sky of gazebo, at the wall, or the floor. If this uniform image is detected, the robot is moved to a preset pose that look at the cubes.
+
+The following shows two situations in which the robot is made to look at the key, and the floor and it reacts to such situations upon visul processing. The small window shows the camera output (topic).
+
+![](./pkg_images/simple_arm_action.gif)
+
+**To launch the simulation environment:**
 ```
 roslaunch simple_arm robot_spawn.launch
 ```
 The system uses two topics to track the image seem by the arm camera, and to detect of the arm is stopped. The topics are /rgb_camera/image_raw and /simple_arm/joint_states
 
-To view the camera output
+To view the arm camera output run the following
 ```
-rqt_image_view /rgb_camera/image_raw
+rosrun req_image_view rqt_image_view
 ```
+Then, se;ect the topic `/rgb_camera/image_raw` to visualize it.
 
-If the arm is seeing a unifrom grey image, and it is stopped (meaning looing up at the sky of gazebo), then it is tasked to move in another way. 
+If the arm is seeing a uniform grey image, and it is stopped (meaning looking up at the sky of gazebo), then it is tasked to move in another way. 
 
-To make the arm to look up at the sky, we can call the service from the command linse as follows
+To make the arm look up at the sky, we can call the service from the command line as follows
 ```sh
 rosservice call /arm_mover/safe_move "joint_1: 0.0
 joint_2: 0.0"
 ```
+To make it look up at the floor, use the following
+```sh
+rosservice call /arm_mover/safe_move "joint_1: 2.0
+joint_2: 2.5"
+```
 
-Upon this look_up move, the sky is detected and the arm is moved not to look at the sky.
+If the sky or the floor are detected, the arm is moves to look at a predefined poses from which its camera sees the 1, 2, 3 cubes.
 
 
 **Resources about how to make the robot model from scratch**
