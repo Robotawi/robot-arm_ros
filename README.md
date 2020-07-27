@@ -63,3 +63,8 @@ If the sky or the floor are detected, the arm is moves to look at a predefined p
 1. [http://gazebosim.org/tutorials?cat=build_world](http://gazebosim.org/tutorials?cat=build_world).
 2. [Tutorial: Using roslaunch to start Gazebo, world files and URDF models](http://gazebosim.org/tutorials?tut=ros_roslaunch&cat=connect_ros).
 3. Check what is inside gazebo [empty_world.launch](https://github.com/ros-simulation/gazebo_ros_pkgs/blob/kinetic-devel/gazebo_ros/launch/empty_world.launch) file. This file is has important defintions that are inherited by our created world. 
+
+## Contact
+In this project, I built everything from scratch because I love to understand how the internals of ROS work. This is a step towards my aim to actively contribute to robotics open-source software.
+
+If you are interested in the presented work/ideas or if you have any questions, please feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/mohraess). We can discuss about this project and other interesting projects.
