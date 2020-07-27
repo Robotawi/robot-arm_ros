@@ -33,7 +33,7 @@ roslaunch simple_arm robot_spawn.launch
 ```
 The system uses two topics to track the image seem by the arm camera, and to detect of the arm is stopped. The topics are /rgb_camera/image_raw and /simple_arm/joint_states
 
-To view the arm camera output run the following
+**To view the arm camera output run the following:**
 ```
 rosrun req_image_view rqt_image_view
 ```
@@ -41,12 +41,12 @@ Then, se;ect the topic `/rgb_camera/image_raw` to visualize it.
 
 If the arm is seeing a uniform grey image, and it is stopped (meaning looking up at the sky of gazebo), then it is tasked to move in another way. 
 
-To make the arm look up at the sky, we can call the service from the command line as follows
+**To make the arm look up at the sky, we can call the service from the command line as follows:**
 ```sh
 rosservice call /arm_mover/safe_move "joint_1: 0.0
 joint_2: 0.0"
 ```
-To make it look up at the floor, use the following
+**To make it look up at the floor, use the following:**
 ```sh
 rosservice call /arm_mover/safe_move "joint_1: 2.0
 joint_2: 2.5"
